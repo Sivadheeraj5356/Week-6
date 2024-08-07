@@ -1,33 +1,27 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import { useMemo, useState } from "react"
   
 function App(){
  const [count, setCount] = useState(0);
- const [input , setInput] = useState(1)
- let sum = useMemo(()=>{
-   let sum =0;
-  for(let i =0; i <= input; i++){
-   sum += i;
-  }
-  return sum;
- },[input])
+ 
+ const inputFunction = useCallback(()=>{
+  console.log("hi there")
+ },[])
  
  return (
   <div>
-    <input onChange={(e)=>{
-      console.log(e)
-      console.log(e.target)
-      console.log(e.target.value)
-       setInput(e.target.value)
-    }} type="number" placeholder="find sum" />
-    <br /><br />
-     Sum from 1 to {input} is {sum}
-    <br />
-    <br />
-    <button onClick={function(){
-      setCount(count+1);
-    }}> Counter: {count} </button>
+   <ButtonComponent inputFunction={inputFunction}></ButtonComponent>
+   <button onClick={function(){
+    setCount(count+1);
+  }}> Counter: {count} </button>
+
   </div>
  )
 }
+const ButtonComponent = memo(({inputFunction})=>{
+  console.log("re render")
+  return <div>
+  <button>Button clicked</button>
+</div>
+})
 export default App
