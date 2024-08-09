@@ -1,4 +1,4 @@
-export function Landing(){
+export default function Landing(){
     return <div>
         <h1>Langing Page</h1>
         <h2>Coming soon</h2>
