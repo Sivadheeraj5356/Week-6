@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import {useRecoilValue ,RecoilRoot , useSetRecoilState} from "recoil"
 import './App.css'
-import { JobsAtom, MessagesAtom, NetworkAtom, NotificationsAtom } from './assets/atoms'
+import { JobsAtom, MessagesAtom, NetworkAtom, NotificationsAtom, totalNotificationsCount } from './assets/atoms'
 
 function MainApp() {
   const NetworkCount = useRecoilValue(NetworkAtom)
@@ -11,19 +11,20 @@ function MainApp() {
   const MessagesCount = useRecoilValue(MessagesAtom)
   const NotificationsCount = useRecoilValue(NotificationsAtom)
   const setJobsCount = useSetRecoilState(JobsAtom)
+  const total = useRecoilValue(totalNotificationsCount)
   return (
     <>
     
-    <button>Home</button>
+    <button  onClick={()=>{
+      setJobsCount(JobsCount+1)
+    }}>Home</button>
 
     <button>My Network({NetworkCount >= 100 ? "99+" :  NetworkCount})</button>
     <button>Jobs({JobsCount})</button>
     <button>Messages({MessagesCount})</button>
     <button>Notifications({NotificationsCount})</button>
 
-    <button onClick={()=>{
-      setJobsCount(JobsCount+1)
-    }}>Me-SivaDheeraj</button>
+    <button>Me-SivaDheeraj({total})</button>
     
     </>
   )
