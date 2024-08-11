@@ -15,22 +15,54 @@ function AddTodo(){
   const[title,setTitle] = useState("")
   const[description,setDescription] = useState("")
   const[timing,setTiming] = useState("")
+const[tasks, setTasks] = useState([])
   function HandleTasks(){
-
+   if(title && description && timing){
+    const newTask = {title, description , timing}
+    setTasks([...tasks, newTask])
+    setTitle("")
+    setDescription("")
+    setTiming("")
+   }
   }
   return <div>
-    <input type="text" placeholder="Title" onChange={(e)=>{
+    <input type="text" placeholder="Title" value={title} onChange={(e)=>{
       setTitle(e.target.value)
     }} /> <br />
-    <input type="text" placeholder="Description" onChange={(e)=>{
+    <input type="text" placeholder="Description" value={description} onChange={(e)=>{
       setDescription(e.target.value)
     }} /> <br />
-    <input type="text" placeholder="Timing" onChange={(e)=>{
+    <input type="text" placeholder="Timing" value={timing} onChange={(e)=>{
       setTiming(e.target.value)
     }} /> <br /> <br />
     <button onClick={HandleTasks}>Add Tasks</button> <br />
+    {/* { showDetails && (
+      <TaskDetails title={title} description={description} timing={timing} />
+    )} */}
+         <TaskLists tasks={tasks}></TaskLists>
+
+
    
   </div>
+}
+function TaskLists({tasks}){
+  return( <div>
+    {tasks.map((task, index) => (
+      <div>
+      <h2>Task :{task.title}</h2>
+      <h2>Description :{task.description}</h2>
+      <h2>Timing : {task.timing}</h2>
+      </div>
+    ))}
+  </div>)
+
+}
+function TaskDetails({title, description , timing}){
+ return <div>
+    <h2> Title : {title}</h2>
+    <h2> Description : {description}</h2>
+    <h2> Timing : {timing}</h2>
+ </div>
 }
 function Count(){
   return <div>
