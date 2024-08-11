@@ -49,7 +49,7 @@ function TaskLists({tasks}){
   return( <div>
     {tasks.map((task, index) => (
       <div>
-      <h2>Task :{task.title}</h2>
+      <h2>Title :{task.title}</h2>
       <h2>Description :{task.description}</h2>
       <h2>Timing : {task.timing}</h2>
       </div>
